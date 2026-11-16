@@ -1,0 +1,122 @@
+/* 내 에이전트 플랫폼의 화면 모양.
+   색은 아래 :root의 토큰으로만 쓴다. 토큰을 고치면 화면 전체의 색이 바뀐다.
+   강조색(--accent)은 custom/brand.json의 accent가 덮어쓴다. */
+:root {
+  /* 바탕과 면 */
+  --bg: #F4F6F8;          /* 화면 바탕 */
+  --surface: #FFFFFF;     /* 칸과 카드 */
+  --sunken: #EDF1F4;      /* 들어간 곳: 입력칸, 코드, 펼친 글 */
+  /* 글자 */
+  --text: #17212B;        /* 본문 */
+  --muted: #5B6B79;       /* 덜 중요한 글 */
+  /* 선 */
+  --line: #D5DDE4;
+  /* 강조. brand.json의 accent가 덮어쓴다 */
+  --accent: #087F87;
+  --on-accent: #FFFFFF;   /* 강조색 위의 글자 */
+  /* 상태 */
+  --ok: #1F7A3A;
+  --warn: #A15C07;
+  --error: #B42318;
+  /* 위의 색에서 만든 옅은 색. 따로 고치지 않아도 따라 바뀐다 */
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  --ok-soft: color-mix(in srgb, var(--ok) 12%, var(--surface));
+  --warn-soft: color-mix(in srgb, var(--warn) 12%, var(--surface));
+  --error-soft: color-mix(in srgb, var(--error) 10%, var(--surface));
+  /* 모양 */
+  --radius: 10px;
+  --font: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --mono: Menlo, Consolas, "Apple SD Gothic Neo", "Malgun Gothic", monospace;
+}
+
+/* 컴퓨터가 어두운 화면이면 이 토큰을 쓴다 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0F1419;
+    --surface: #182028;
+    --sunken: #111820;
+    --text: #E6EDF3;
+    --muted: #93A1AE;
+    --line: #2B3742;
+    --ok: #4CC27A;
+    --warn: #E3A341;
+    --error: #F2706A;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { margin: 0; display: flex; flex-direction: column; font-family: var(--font);
+       background: var(--bg); color: var(--text); }
+h1 { margin: 0; font-size: 19px; }
+h2 { margin: 0; font-size: 16px; }
+p { margin: 4px 0 0; }
+.muted { color: var(--muted); font-size: 13px; }
+.small { font-size: 12px; }
+code, pre { font-family: var(--mono); font-size: 12.5px; background: var(--sunken); border-radius: 6px; }
+code { padding: 1px 5px; }
+pre { white-space: pre-wrap; word-break: break-word; padding: 10px 12px; margin: 8px 0 0; line-height: 1.55; }
+a { color: var(--accent); word-break: break-all; }
+
+/* 버튼 */
+button { font: inherit; font-size: 14px; border: 1px solid var(--accent); border-radius: 8px; cursor: pointer;
+         padding: 7px 14px; background: var(--accent); color: var(--on-accent); }
+button.ghost { background: transparent; color: var(--accent); }
+button.link { border: none; background: none; color: var(--muted); padding: 4px; text-decoration: underline; }
+button:disabled { opacity: 0.45; cursor: default; }
+
+/* 맨 위 */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+       padding: 12px 20px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.pill { background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 6px 14px;
+        font-size: 13px; white-space: nowrap; }
+.pill[data-state="error"] { background: var(--error-soft); color: var(--error); }
+
+/* 틀: 왼쪽 엔진, 오른쪽 대화. 좁은 화면에서는 위아래로 놓는다 */
+.layout { flex: 1; min-height: 0; display: grid; grid-template-columns: 280px 1fr; gap: 16px; padding: 16px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-height: 0; }
+@media (max-width: 760px) {
+  html, body { height: auto; }
+  .layout { grid-template-columns: 1fr; padding: 12px 16px; }
+  .chat { min-height: 70vh; }
+}
+
+/* 엔진 카드 */
+.engine-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.engine { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; }
+.engine.current { border-color: var(--accent); background: var(--accent-soft); }
+.engine-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
+.badge { font-size: 12px; border-radius: 999px; padding: 2px 9px; background: var(--sunken); color: var(--muted); }
+.badge.ok { background: var(--ok-soft); color: var(--ok); }
+.badge.need { background: var(--warn-soft); color: var(--warn); }
+.login-box { margin-top: 10px; padding: 10px; border-radius: 8px; background: var(--sunken);
+             display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.login-box .code { font-family: var(--mono); font-size: 20px; letter-spacing: 0.08em; }
+.login-box .row { display: flex; gap: 6px; }
+.login-box input { flex: 1; min-width: 0; font: inherit; padding: 6px 8px; border: 1px solid var(--line);
+                   border-radius: 6px; background: var(--surface); color: var(--text); }
+
+/* 대화 */
+.chat { display: flex; flex-direction: column; }
+.chat-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.log { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 12px 0; }
+.placeholder { color: var(--muted); font-size: 14px; text-align: center; margin: auto; }
+.msg { max-width: 85%; white-space: pre-wrap; word-break: break-word; line-height: 1.6; font-size: 14px; }
+.msg.user { align-self: flex-end; background: var(--accent-soft); padding: 8px 12px; border-radius: var(--radius); }
+.msg.agent { align-self: flex-start; background: var(--sunken); padding: 8px 12px; border-radius: var(--radius); }
+.msg.note { align-self: flex-start; color: var(--muted); font-size: 12.5px; }
+.msg.error { color: var(--error); }
+details.msg summary { cursor: pointer; }
+
+/* 허락 카드 */
+.card { align-self: flex-start; max-width: 85%; border: 1px solid var(--warn); background: var(--warn-soft);
+        border-radius: var(--radius); padding: 10px 12px; font-size: 14px; }
+.card .detail { font-family: var(--mono); font-size: 12.5px; white-space: pre-wrap; word-break: break-word; margin-top: 4px; }
+
+/* 입력칸 */
+.composer { display: flex; gap: 8px; align-items: flex-end; border-top: 1px solid var(--line); padding-top: 12px; }
+.composer textarea { flex: 1; min-width: 0; resize: vertical; font: inherit; font-size: 14px; padding: 8px 10px;
+                     border: 1px solid var(--line); border-radius: 8px; background: var(--sunken); color: var(--text); }
+.composer textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }

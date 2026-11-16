@@ -1,0 +1,38 @@
+﻿my-agent-platform Windows 확인 결과 기록표
+
+[ ] 안에 O(됨), X(안 됨), -(해 보지 않음)를 적는다. 안 되면 메모에 화면의 글을 적는다.
+엔진 칸은 K=Kiro, C=Claude, X=Codex다.
+
+날짜:
+Windows 버전:
+사용자 폴더 이름에 한글이 있는가:
+레포를 둔 곳:
+
+1. 기본
+[ ] python windows_test\windows_check.py가 끝까지 돌았다     테스트 결과:
+
+2. 앱 (시작하기.html의 4번부터)            K    C    X
+[ ] python dashboard.py로 켜지고 브라우저가 열린다
+2-1 엔진 카드의 상태가 맞게 나온다       [ ]  [ ]  [ ]
+2-2 화면에서 로그인(Claude, Codex만)          [ ]  [ ]
+2-3 연결 → 첫 대화(안녕)                 [ ]  [ ]  [ ]
+2-4 파일 쓰기에 허락 카드가 뜬다         [ ]  [ ]  [ ]
+2-5 허락하면 workspace에 파일이 생긴다   [ ]  [ ]  [ ]
+2-6 엔진을 바꿔서 대화를 이어 간다       [ ]
+2-7 앱을 다시 켜도 대화가 남는다         [ ]
+2-8 Ctrl+C로 꺼진다                      [ ]
+2-9 끈 뒤 작업 관리자에 node, kiro-cli가 남지 않는다  [ ]   남은 것:
+2-10 Claude, Codex의 첫 연결에 걸린 시간:
+2-11 Codex에서 관리자 확인 창이나 샌드박스 안내가 떴는가:
+
+3. 코딩 에이전트로 고치기 (시작하기.html의 5번, 6번)
+[ ] kiro-cli로 이름과 색을 바꿨다
+[ ] 할 일 목록을 만들고 등록과 완료가 됐다
+[ ] python -m unittest discover tests가 통과했다
+
+4. 실제 엔진
+[ ] python windows_test\windows_check.py --real이 끝까지 돌았다
+[ ] 개인 스킬 격리 확인(y)을 했다
+
+메모:
+

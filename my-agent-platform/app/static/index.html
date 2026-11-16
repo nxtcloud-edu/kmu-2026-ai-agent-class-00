@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내 에이전트 플랫폼</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <!-- 화면은 셋으로 나뉜다. 위: 앱 이름과 한 줄 소개(custom/brand.json). 왼쪽: 엔진. 오른쪽: 대화.
+       색은 style.css 맨 위의 토큰에서 바꾼다. 동작은 app.js에 있다. -->
+  <header class="top">
+    <div>
+      <h1 id="brand-name">내 에이전트 플랫폼</h1>
+      <p id="brand-tagline" class="muted"></p>
+    </div>
+    <span id="status" class="pill">대기 중</span>
+  </header>
+
+  <main class="layout">
+    <!-- 엔진: 로그인 상태, 로그인, 연결 -->
+    <section class="panel">
+      <h2>엔진</h2>
+      <p class="muted small">로그인한 엔진을 골라 연결합니다. 엔진을 바꿔도 대화는 이어집니다.</p>
+      <div id="engine-list" class="engine-list"></div>
+    </section>
+
+    <!-- 대화: 기록, 허락 카드, 입력칸 -->
+    <section class="panel chat">
+      <div class="chat-head">
+        <h2>대화</h2>
+        <button type="button" id="new-chat" class="ghost">새 대화</button>
+      </div>
+      <div id="log" class="log"></div>
+      <form id="composer" class="composer">
+        <textarea id="text" rows="2" placeholder="맡길 일을 적어 주세요. Enter로 보내고, Shift+Enter로 줄을 바꿉니다."></textarea>
+        <button type="submit" id="send">보내기</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -367,7 +367,7 @@ def main():
     report.save()
     print("")
     print(f"끝. 결과 파일: {report.path}")
-    print("이 파일을 커밋하고 푸시한다: git add windows_test && git commit -m \"test: Windows 확인 결과\" && git push")
+    print("결과 파일은 커밋하지 않는다.")
 
 
 if __name__ == "__main__":

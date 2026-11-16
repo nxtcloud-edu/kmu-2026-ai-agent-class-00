@@ -36,13 +36,7 @@ cd kmu-2026-ai-agent-class-00
    python windows_test\windows_check.py --real
    ```
 
-4. 결과를 올립니다.
-
-   ```
-   git add windows_test
-   git commit -m "test: Windows 확인 결과"
-   git push
-   ```
+4. 결과는 올리지 않습니다. 커밋과 푸시를 하지 않습니다. 볼 것이 있으면 결과 파일의 내용만 따로 전합니다.
 
 ## 결과 파일
 
